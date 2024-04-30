@@ -14,5 +14,8 @@
     "mariam"
   ],
   "author": "Mariam Hasanat",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^6.5.0"
+  }
 }
