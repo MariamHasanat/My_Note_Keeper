@@ -16,6 +16,10 @@
   "author": "Mariam Hasanat",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.2",
     "mongodb": "^6.5.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.5"
   }
 }
