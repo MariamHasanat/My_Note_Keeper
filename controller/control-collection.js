@@ -45,8 +45,6 @@ const updateNote = async (id, newData) => {
 const deleteNote = async (id) => {
     try {
         await Note.findByIdAndDelete(id);
-        console.log('deleted successfully');
-
     } catch (error) {
         console.log('error in delete ', error);
     }
