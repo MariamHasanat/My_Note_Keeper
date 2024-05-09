@@ -12,15 +12,12 @@ const createNote = (note) => {
         )
 }
 
-const readNoteByID = async (id) => {
-    const noteByID = await Note.findById(id);
-    if (noteID) {
-        const note = {
-            title: noteID.title,
-            content: noteID.content,
-            creationDate: noteID.creationDate
-        }
-        return note
+const readNotes = async () => {
+    const notes = await Note.collection.find();
+    console.log(notes);
+    if (notes) {
+      console.log('successfully : ', notes);
+        return notes;
     } else {
         return null
     }
@@ -57,4 +54,4 @@ const deleteNote = async (id) => {
     }
 }
 
-export default { createNote, readNoteByID, updateNote, deleteNote }
+export default { createNote, readNotes, updateNote, deleteNote }
