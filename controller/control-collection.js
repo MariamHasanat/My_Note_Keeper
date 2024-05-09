@@ -1,11 +1,12 @@
-import Note from '../model/note-model';
+const Note = require('../model/note-model');
 
 const createNote = (note) => {
     const newNote = new Note({
         title: note.title,
         content: note.content,
-        creationDate: note.creationDate
+        creationDate: Date.now()
     })
+    console.log(newNote);
     return newNote.save()
         .then(
             () => { return true }
@@ -16,7 +17,7 @@ const readNotes = async () => {
     const notes = await Note.collection.find();
     console.log(notes);
     if (notes) {
-      console.log('successfully : ', notes);
+        console.log('successfully : ', notes);
         return notes;
     } else {
         return null
@@ -54,4 +55,4 @@ const deleteNote = async (id) => {
     }
 }
 
-export default { createNote, readNotes, updateNote, deleteNote }
+module.exports = { createNote, readNotes, updateNote, deleteNote };

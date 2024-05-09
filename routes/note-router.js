@@ -1,4 +1,4 @@
-import controlCollection from '../controller/control-collection';
+const controlCollection = require('../controller/control-collection');
 const express = require('express');
 const mongoose = require('mongoose')
 const router = express.Router();
@@ -41,4 +41,4 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-export default router;
+module.exports =  router ;

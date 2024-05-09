@@ -6,16 +6,15 @@ const noteSchema = new mongoose.Schema({
         require: true,
         unique: true
     },
-    content:{
+    content: {
         type: String,
         require: true
     },
-    creationDate:{
-        type: Date,
-        require:true
+    creationDate: {
+        type: Date, 
     }
 });
 
 const Note = mongoose.model('Note', noteSchema);// this will create a collection in DataBase and return it with a set of methods to deal with this collection
 
-export default Note;
+module.exports = Note;
