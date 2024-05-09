@@ -24,17 +24,16 @@ const readNotes = async () => {
 
 const updateNote = async (id, newData) => {
     try {
-        const updatedNote = new Note({
+        const updatedNote = {
             title: newData.title,
             content: newData.content,
             creationDate: newData.creationDate
-        })
+        }
         const updated = await Note.findByIdAndUpdate(id, updatedNote);
         if (!updated) {
             console.log('failed to update');
             return null
         } else {
-            console.log('updated successfully');
             return updated
         }
 

@@ -34,7 +34,7 @@ router.delete('/:id', async (req, res) => {
 })
 router.put('/:id', async (req, res) => {
     try {
-        await controlCollection.updateNote(req.params.id);
+        await controlCollection.updateNote(req.params.id, req.body);
         res.status(200).send("updated successfully").end();
     } catch (error) {
         res.status(501).send('failed to update data ').end();
