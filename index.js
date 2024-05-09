@@ -1,10 +1,15 @@
 const express = require('express');
 const mongoose = require('mongoose')
+const cors = require('cors')
 require('dotenv').config();
+import router from './routes/note-router'
 
 
 const app = express();
 app.use(express.json());
+app.use(cors());
+app.use('/notes', router);
+
 const port = 3001;
 
 const dbConnect = () =>{
