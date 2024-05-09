@@ -14,10 +14,8 @@ const createNote = (note) => {
 }
 
 const readNotes = async () => {
-    const notes = await Note.collection.find();
-    console.log(notes);
+    const notes = await Note.find();
     if (notes) {
-        console.log('successfully : ', notes);
         return notes;
     } else {
         return null

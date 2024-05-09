@@ -9,7 +9,7 @@ router.use(cors());
 
 router.get('/', async (req, res) => {
     try {
-        const notes = await controlCollection.readNotes()
+        const notes = await controlCollection.readNotes();
         res.status(200).send(notes).end();
     } catch (error) {
         res.status(501).send('failed to retrieve data ').end();
