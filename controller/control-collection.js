@@ -1,5 +1,3 @@
-// import mongoose from "mongoose";
-// import Note from 
 const mongoose = require("mongoose");
 
 const Note = require('../model/note-model');
@@ -67,5 +65,17 @@ const searchNotes = async (params) => {
         console.log('error in query : ', error);
     }
 }
+const paginateNotes = async (params) => {
+    try {
+        let query = {};
+        if (params === '0'){
+            return [];
+        }
+        return await Note.find(query, null, { sort: { '_id': -1 } }).limit(params)
 
-module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes };
+    } catch (error) {
+        console.log('error in query : ', error);
+    }
+}
+
+module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes, paginateNotes };

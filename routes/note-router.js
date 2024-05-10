@@ -26,6 +26,16 @@ router.get(`/search?`, async (req, res) => {
         res.status(501).send('failed to retrieve data ').end();
     }
 });
+router.get(`/limit?`, async (req, res) => {
+    try {
+        // const page = req.query.page;
+        const limit = req.query.limit;
+        const notes = await controlCollection.paginateNotes(limit);
+        res.status(200).send(notes).end();
+    } catch (error) {
+        res.status(501).send('failed to retrieve data ').end();
+    }
+});
 
 
 router.post('/', async (req, res) => {
