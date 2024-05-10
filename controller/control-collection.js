@@ -57,23 +57,11 @@ const deleteNote = async (id) => {
 const searchNotes = async (params) => {
     try {
         let query = {};
-        if (params.title) {
-            const queryRegex = new RegExp(params.title, 'i');
-            query =
-            {
-                ...query, title: queryRegex
-            }
+        if (params) {
+            const queryRegex = new RegExp(params, 'i');
+            query = { $or: [{ title: queryRegex }, { content: queryRegex }] }
         }
-        if (params.content) {
-            const queryRegex = new RegExp(params.content, 'i');
-            query =
-            {
-                ...query, content: queryRegex
-            }
-        }
-
         return await Note.find(query, null, { sort: { '_id': -1 } })
-
 
     } catch (error) {
         console.log('error in query : ', error);

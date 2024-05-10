@@ -19,10 +19,8 @@ router.get('/', async (req, res) => {
 // router.get(`/search?title=${req.query.title}&&content=${req.query.content}`, async (req, res) => {
 router.get(`/search?`, async (req, res) => {
     try {
-        const title = req.query.title;
-        const content = req.query.content;
-        console.log('title', title, '\n', 'content', content);
-        const notes = await controlCollection.searchNotes({title, content});
+        const query = req.query.query;
+        const notes = await controlCollection.searchNotes(query);
         res.status(200).send(notes).end();
     } catch (error) {
         res.status(501).send('failed to retrieve data ').end();
