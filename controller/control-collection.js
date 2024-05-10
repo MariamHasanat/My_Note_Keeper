@@ -15,12 +15,14 @@ const createNote = (note) => {
         )
 }
 
-const readNotes = async () => {
+const readNotes = async (params) => {
+    const {from, to} = params;
     const notes = await Note.find();
-    if (notes) {
-        return notes;
+    const paginatedNotes = notes.slice(from, to);
+    if (paginatedNotes) {
+        return paginatedNotes;
     } else {
-        return null
+        return null;
     }
 }
 
@@ -65,17 +67,6 @@ const searchNotes = async (params) => {
         console.log('error in query : ', error);
     }
 }
-const paginateNotes = async (params) => {
-    try {
-        let query = {};
-        if (params === '0'){
-            return [];
-        }
-        return await Note.find(query, null, { sort: { '_id': -1 } }).limit(params)
 
-    } catch (error) {
-        console.log('error in query : ', error);
-    }
-}
 
-module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes, paginateNotes };
+module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes };
