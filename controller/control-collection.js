@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 const Note = require('../model/note-model');
 
 const createNote = (note) => {
@@ -13,12 +15,14 @@ const createNote = (note) => {
         )
 }
 
-const readNotes = async () => {
+const readNotes = async (params) => {
+    const {from, to} = params;
     const notes = await Note.find();
-    if (notes) {
-        return notes;
+    const paginatedNotes = notes.slice(from, to);
+    if (paginatedNotes) {
+        return paginatedNotes;
     } else {
-        return null
+        return null;
     }
 }
 
@@ -50,4 +54,19 @@ const deleteNote = async (id) => {
     }
 }
 
-module.exports = { createNote, readNotes, updateNote, deleteNote };
+const searchNotes = async (params) => {
+    try {
+        let query = {};
+        if (params) {
+            const queryRegex = new RegExp(params, 'i');
+            query = { $or: [{ title: queryRegex }, { content: queryRegex }] }
+        }
+        return await Note.find(query, null, { sort: { '_id': -1 } })
+
+    } catch (error) {
+        console.log('error in query : ', error);
+    }
+}
+
+
+module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes };

@@ -7,15 +7,27 @@ const cors = require('cors')
 router.use(express.json());
 router.use(cors());
 
-router.get('/', async (req, res) => {
+router.get('/?', async (req, res) => {
     try {
-        const notes = await controlCollection.readNotes();
+        const page = req.query.page ? Number(req.query.page) : 0;
+        const limit = req.query.limit ? Number(req.query.limit) : 4;
+        const from = page * limit;
+        const to = from + limit;
+        const notes = await controlCollection.readNotes({from, to});
         res.status(200).send(notes).end();
     } catch (error) {
         res.status(501).send('failed to retrieve data ').end();
     }
 });
-
+router.get(`/search?`, async (req, res) => {
+    try {
+        const query = req.query.query;
+        const notes = await controlCollection.searchNotes(query);
+        res.status(200).send(notes).end();
+    } catch (error) {
+        res.status(501).send('failed to retrieve data ').end();
+    }
+});
 router.post('/', async (req, res) => {
     try {
         await controlCollection.createNote(req.body);
@@ -41,4 +53,6 @@ router.put('/:id', async (req, res) => {
     }
 })
 
-module.exports =  router ;
+
+
+module.exports = router;
