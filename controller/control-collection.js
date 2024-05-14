@@ -37,8 +37,7 @@ const putNote = async (id, newData) => {
         }
         const updated = await Note.findByIdAndUpdate(id, updatedNote);
         if (!updated) {
-            console.log('failed to update');
-            return null
+            throw Error('failed to update')
         } else {
             return updated
         }
