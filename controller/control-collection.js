@@ -1,6 +1,6 @@
 const Note = require('../model/note-model');
 
-const createNote = async (note) => {
+const postNote = async (note) => {
     try {
         const newNote = new Note({
             title: note.title,
@@ -13,7 +13,7 @@ const createNote = async (note) => {
     }
 }
 
-const readNotes = async (params) => {
+const getNotes = async (params) => {
     const { from, to } = params;
     const notes = await Note.find();
     const paginatedNotes = notes.slice(from, to);
@@ -24,7 +24,7 @@ const readNotes = async (params) => {
     }
 }
 
-const updateNote = async (id, newData) => {
+const putNote = async (id, newData) => {
     try {
         const updatedNote = {
             title: newData.title,
@@ -67,4 +67,4 @@ const searchNotes = async (params) => {
 }
 
 
-module.exports = { createNote, readNotes, updateNote, deleteNote, searchNotes };
+module.exports = { postNote, getNotes, putNote, deleteNote, searchNotes };
