@@ -12,12 +12,14 @@ app.use(cors());
 app.use('/notes', router);
 
 const port = 3001;
+const DateBaseURL = process.env.DATABASE_URL;
+
 
 app.get('/', (req, res) => {
     console.log('connected to server successfully');
 })
 const dbConnect = () => {
-    mongoose.connect('mongodb://127.0.0.1:27017/My_Note_Keeper')
+    mongoose.connect(DateBaseURL)
         .then(() => {
             console.log(`😁 Resolved : connect to database successfully 🔥`);
         })
