@@ -1,16 +1,20 @@
 const Note = require('../model/note-model');
 
-const createNote = async(note) => {
-    const newNote = new Note({
-        title: note.title,
-        content: note.content,
-        creationDate: Date.now()
-    })
-    return await newNote.save();      
+const createNote = async (note) => {
+    try {
+        const newNote = new Note({
+            title: note.title,
+            content: note.content,
+            creationDate: Date.now()
+        })
+        return await newNote.save();
+    } catch (error) {
+        throw Error("failed to create the note");
+    }
 }
 
 const readNotes = async (params) => {
-    const {from, to} = params;
+    const { from, to } = params;
     const notes = await Note.find();
     const paginatedNotes = notes.slice(from, to);
     if (paginatedNotes) {
