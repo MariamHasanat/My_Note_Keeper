@@ -51,7 +51,7 @@ const deleteNote = async (id) => {
     try {
         await Note.findByIdAndDelete(id);
     } catch (error) {
-        console.log('error in delete ', error);
+       throw Error(error);
     }
 }
 
