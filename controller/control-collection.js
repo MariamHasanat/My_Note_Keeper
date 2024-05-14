@@ -1,15 +1,12 @@
 const Note = require('../model/note-model');
 
-const createNote = (note) => {
+const createNote = async(note) => {
     const newNote = new Note({
         title: note.title,
         content: note.content,
         creationDate: Date.now()
     })
-    return newNote.save()
-        .then(
-            () => { return true }
-        )
+    return await newNote.save();      
 }
 
 const readNotes = async (params) => {

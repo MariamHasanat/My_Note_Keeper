@@ -30,8 +30,8 @@ router.get(`/search?`, async (req, res) => {
 });
 router.post('/', async (req, res) => {
     try {
-        await controlCollection.createNote(req.body);
-        res.status(200).send("created successfully").end();
+       const createdNote =  await controlCollection.createNote(req.body);
+        res.status(200).send(createdNote).end();
     } catch (error) {
         res.status(501).send('failed to save data ').end();
     }
