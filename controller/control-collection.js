@@ -44,7 +44,7 @@ const putNote = async (id, newData) => {
         }
 
     } catch (error) {
-        console.log('failed to update : \n', error);
+        throw Error(error);
     }
 }
 
