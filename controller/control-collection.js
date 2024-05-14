@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-
 const Note = require('../model/note-model');
 
 const createNote = (note) => {
@@ -8,7 +6,6 @@ const createNote = (note) => {
         content: note.content,
         creationDate: Date.now()
     })
-    console.log(newNote);
     return newNote.save()
         .then(
             () => { return true }
