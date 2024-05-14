@@ -65,7 +65,7 @@ const searchNotes = async (params) => {
         return await Note.find(query, null, { sort: { '_id': -1 } })
 
     } catch (error) {
-        console.log('error in query : ', error);
+        throw Error(error);
     }
 }
 

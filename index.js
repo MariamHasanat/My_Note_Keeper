@@ -9,7 +9,6 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// console.log(router);
 app.use('/notes', router);
 
 const port = 3001;
