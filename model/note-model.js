@@ -15,6 +15,6 @@ const noteSchema = new mongoose.Schema({
     }
 });
 
-const Note = mongoose.model('Note', noteSchema);// this will create a collection in DataBase and return it with a set of methods to deal with this collection
+const Note = mongoose.model('Note', noteSchema);
 
 module.exports = Note;
