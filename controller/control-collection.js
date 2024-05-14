@@ -14,13 +14,17 @@ const postNote = async (note) => {
 }
 
 const getNotes = async (params) => {
-    const { from, to } = params;
-    const notes = await Note.find();
-    const paginatedNotes = notes.slice(from, to);
-    if (paginatedNotes) {
-        return paginatedNotes;
-    } else {
-        return null;
+    try {
+        const { from, to } = params;
+        const notes = await Note.find();
+        const paginatedNotes = notes.slice(from, to);
+        if (paginatedNotes) {
+            return paginatedNotes;
+        } else {
+            return null;
+        }
+    } catch (error) {
+        throw Error(`${error}`);
     }
 }
 
