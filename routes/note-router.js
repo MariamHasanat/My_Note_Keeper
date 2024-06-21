@@ -9,7 +9,7 @@ router.use(cors());
 router.get('/?', async (req, res) => {
     try {
         const page = req.query.page ? Number(req.query.page) : 0;
-        const limit = req.query.limit ? Number(req.query.limit) : 4;
+        const limit = req.query.limit ? Number(req.query.limit) : 10;
         const from = page * limit;
         const to = from + limit;
         const notes = await controlCollection.getNotes({ from, to });
@@ -37,8 +37,8 @@ router.post('/', async (req, res) => {
 })
 router.delete('/:id', async (req, res) => {
     try {
-        await controlCollection.deleteNote(req.params.id);
-        res.status(200).send("deleted successfully").end();
+        const deletedNote = await controlCollection.deleteNote(req.params.id);
+        res.status(200).send(deletedNote).end();
     } catch (error) {
         res.status(501).send('failed to delete data ').end();
     }

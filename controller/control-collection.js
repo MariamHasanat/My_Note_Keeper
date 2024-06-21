@@ -49,7 +49,7 @@ const putNote = async (id, newData) => {
 
 const deleteNote = async (id) => {
     try {
-        await Note.findByIdAndDelete(id);
+       return await Note.findByIdAndDelete(id);
     } catch (error) {
        throw Error(error);
     }
