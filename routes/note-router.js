@@ -9,7 +9,7 @@ router.use(cors());
 router.get('/?', async (req, res) => {
     try {
         const page = req.query.page ? Number(req.query.page) : 0;
-        const limit = req.query.limit ? Number(req.query.limit) : 4;
+        const limit = req.query.limit ? Number(req.query.limit) : 100;
         const from = page * limit;
         const to = from + limit;
         const notes = await controlCollection.getNotes({ from, to });
